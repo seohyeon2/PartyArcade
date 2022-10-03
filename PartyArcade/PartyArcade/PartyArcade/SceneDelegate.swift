@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  PartyArcade
 //
-//  Created by seohyeon park on 2022/10/04.
+//  Created by hyeon, finnn on 2022/10/03.
 //
 
 import UIKit
