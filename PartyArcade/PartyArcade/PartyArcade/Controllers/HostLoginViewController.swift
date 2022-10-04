@@ -25,6 +25,24 @@ class HostLoginViewController: UIViewController {
         nicknameTextField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     // MARK: - Button Actions
     
     @IBAction func connectButtonTapped(_ sender: UIButton) {
@@ -44,6 +62,26 @@ class HostLoginViewController: UIViewController {
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    
+    // MARK: - keyboard Action
+    
+    @objc func keyboardUp(notification: NSNotification) {
+        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+           let keyboardRectangle = keyboardFrame.cgRectValue
+       
+            UIView.animate(
+                withDuration: 0.3
+                , animations: {
+//                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -(self.loginButton.frame.origin.y / 2))
+                }
+            )
+        }
+    }
+    
+    @objc func keyboardDown() {
+        self.view.transform = .identity
     }
 }
 
