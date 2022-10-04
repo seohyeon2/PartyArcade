@@ -42,40 +42,37 @@ class LobbyViewController: UIViewController {
             .child("rooms")
             .child(inviteCode)
             .observe(.value) { dataSnapshot in
-            
-            print(dataSnapshot)
-            guard let playerList = (dataSnapshot.value as? [String: [String: [String: Any]]]) else { return }
-            
-                guard let aaa = playerList.map({ bbb -> [[String: Any]] in
-                    bbb.value.map({ ccc -> [String: Any] in
-                        ccc.value
-                    })
-                }).first else { return }
                 
-                let mapped = aaa.map { bbb -> UserInfo in
-                    guard let data = try? JSONSerialization.data(withJSONObject: bbb),
-                          let object = try? JSONDecoder().decode(UserInfo.self, from: data) else {
-                        return UserInfo(
-                            name: "",
-                            uuid: UUID(),
-                            loginTime: 0.0,
-                            isHost: false
-                        ) }
-                        
-                    return object
+                guard dataSnapshot.exists() else {
+                    print("호스트가 나가서 방이 사라짐.")
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    return
                 }
                 
+                print(dataSnapshot)
+                guard let asd = try? JSONSerialization.data(withJSONObject: dataSnapshot.value) else {
+                    print("error")
+                    return
+                }
+                let zxc = try? JSONDecoder().decode(Room.self, from: asd)
                 
-            
-            let sorted = mapped.sorted { $0.loginTime > $1.loginTime }
-            
-            self.playerList = sorted
-            self.playerNameList = sorted.map { $0.name }
-
-            self.playerCount = sorted.count
-            self.userlistTableView.reloadData()
-            
-        }
+                let mapped = zxc?.userList.map {
+                    $0.value
+                }
+                let optionalSorted = mapped?.sorted { $0.loginTime > $1.loginTime }
+                
+                guard let sorted = optionalSorted else { return }
+                
+                self.playerList = sorted
+                self.playerNameList = sorted.map { $0.name }
+                
+                self.playerCount = sorted.count
+                let range = NSMakeRange(0, self.userlistTableView.numberOfSections)
+                let sections = NSIndexSet(indexesIn: range)
+                self.userlistTableView.reloadSections(sections as IndexSet, with: .automatic)
+            } withCancel: { error in
+                print(error)
+            }
     }
     
     @IBAction func changeNicknameButtonTapped(_ sender: UIButton) {

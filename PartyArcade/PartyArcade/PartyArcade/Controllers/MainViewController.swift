@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 
-enum Game: Int {
+enum Game: Int, Codable {
     case Drama = 0
     case Movie
     
@@ -42,19 +42,28 @@ class MainViewController: UIViewController {
         CurrentUserInfo.currentGame = game
         CurrentUserInfo.currentRoom = inviteCode
         
-        let encodedData = try! JSONEncoder().encode(currentUserInfo)
-        let jsonData = try! JSONSerialization.jsonObject(with: encodedData)
+        guard let encodedData = try? JSONEncoder().encode(currentUserInfo),
+              let jsonData = try? JSONSerialization.jsonObject(with: encodedData) else { return }
         
         myConnectionsRef
             .child("rooms")
             .child(inviteCode.uuidString)
-            .child(game.string)
+            .setValue(["game": game.rawValue])
+        myConnectionsRef
+            .child("rooms")
+            .child(inviteCode.uuidString)
+            .onDisconnectRemoveValue()
+        
+        myConnectionsRef
+            .child("rooms")
+            .child(inviteCode.uuidString)
+            .child("userList")
             .child(currentUserInfo.uuid.uuidString)
             .setValue(jsonData)
         myConnectionsRef
             .child("rooms")
             .child(inviteCode.uuidString)
-            .child(game.string)
+            .child("userList")
             .child(currentUserInfo.uuid.uuidString)
             .onDisconnectRemoveValue()
         

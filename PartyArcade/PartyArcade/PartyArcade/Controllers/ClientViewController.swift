@@ -34,28 +34,23 @@ class ClientViewController: UIViewController {
                     return
                 }
                 
-                guard let dataSnapshot = dataSnapshot else {
+                guard dataSnapshot!.exists() else {
+                    print("방이 없음")
                     return
                 }
                 
-                print(dataSnapshot)
                 print("방 찾음")
                 
-                guard let aaa = dataSnapshot.value as? [String: [String: [String: Any]]] else { return }
-                
-                guard let game = aaa.keys.first else { return }
-                
-                var currentGame: Game
-                switch game.description {
-                case "drama":
-                    currentGame = .Drama
-                case "movie":
-                    currentGame = .Movie
-                default:
-                    currentGame = .Drama
+                var zxc: Room? = nil
+                do {
+                    let asd = try JSONSerialization.data(withJSONObject: dataSnapshot!.value)
+                    zxc = try JSONDecoder().decode(Room.self, from: asd)
+                } catch {
+                    print(error)
                 }
                 
-                CurrentUserInfo.currentGame = currentGame
+                guard let game = Game(rawValue: zxc!.game.rawValue) else { return }
+                CurrentUserInfo.currentGame = game
                 CurrentUserInfo.currentRoom = UUID(uuidString: inputedCode)
                 
                 self.performSegue(withIdentifier: "moveToClientLoginView", sender: sender)

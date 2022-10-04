@@ -41,19 +41,19 @@ class ClientLoginViewController: UIViewController {
         
         guard let inviteCode = CurrentUserInfo.currentRoom?.uuidString else { return }
         
-        let encodedData = try! JSONEncoder().encode(currentUserInfo)
-        let jsonData = try! JSONSerialization.jsonObject(with: encodedData)
+        guard let encodedData = try? JSONEncoder().encode(currentUserInfo),
+              let jsonData = try? JSONSerialization.jsonObject(with: encodedData) else { return }
         
         myConnectionsRef
             .child("rooms")
             .child(inviteCode)
-            .child(game.string)
+            .child("userList")
             .child(currentUserInfo.uuid.uuidString)
             .setValue(jsonData)
         myConnectionsRef
             .child("rooms")
             .child(inviteCode)
-            .child(game.string)
+            .child("userList")
             .child(currentUserInfo.uuid.uuidString)
             .onDisconnectRemoveValue()
     }

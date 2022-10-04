@@ -24,6 +24,7 @@
 		B419ECDD28EC2CE30001E3DE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDC28EC2CE30001E3DE /* MainViewController.swift */; };
 		B419ECDF28EC37D40001E3DE /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDE28EC37D40001E3DE /* ClientViewController.swift */; };
 		B419ECE128EC3A6B0001E3DE /* ClientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */; };
+		B4B5D3C128EC692900D7EC29 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5D3C028EC692900D7EC29 /* Rooms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B419ECDC28EC2CE30001E3DE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B419ECDE28EC37D40001E3DE /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientLoginViewController.swift; sourceTree = "<group>"; };
+		B4B5D3C028EC692900D7EC29 /* Rooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				B419ECD828EC28910001E3DE /* UserInfo.swift */,
 				B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */,
+				B4B5D3C028EC692900D7EC29 /* Rooms.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			files = (
 				B419ECE128EC3A6B0001E3DE /* ClientLoginViewController.swift in Sources */,
 				05BFF3D828EB5D48004BCC5F /* HostLoginViewController.swift in Sources */,
+				B4B5D3C128EC692900D7EC29 /* Rooms.swift in Sources */,
 				05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */,
 				05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */,
 				B419ECDF28EC37D40001E3DE /* ClientViewController.swift in Sources */,
