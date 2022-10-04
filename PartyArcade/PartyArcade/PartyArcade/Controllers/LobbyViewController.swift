@@ -35,8 +35,8 @@ class LobbyViewController: UIViewController {
               let inviteCode = CurrentUserInfo.currentRoom?.uuidString else { return }
         
         inviteCodeTextView.isEditable = false
-        inviteCodeTextView.textContainer.maximumNumberOfLines = 2
-        inviteCodeTextView.text = "초대코드 :\n\(inviteCode)"
+        inviteCodeTextView.textContainer.maximumNumberOfLines = 1
+        inviteCodeTextView.text = "\(inviteCode)"
         
         myConnectionsRef
             .child("rooms")
@@ -75,6 +75,8 @@ class LobbyViewController: UIViewController {
             }
     }
     
+    // MARK: - Button Actions
+    
     @IBAction func changeNicknameButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
@@ -89,13 +91,23 @@ class LobbyViewController: UIViewController {
             print(dataSnapshot)
         }
     }
+    
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        guard let inviteCode = inviteCodeTextView.text else { return }
+        let activityVC = UIActivityViewController(activityItems: [inviteCode], applicationActivities: nil)
+        present(activityVC, animated: true)
+    }
 }
+
+// MARK: - UITableViewDelegate
 
 extension LobbyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension LobbyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
