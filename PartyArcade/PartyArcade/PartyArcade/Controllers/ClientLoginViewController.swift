@@ -90,12 +90,11 @@ class ClientLoginViewController: UIViewController {
     
     @objc func keyboardUp(notification: NSNotification) {
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-           let keyboardRectangle = keyboardFrame.cgRectValue
-       
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            
             UIView.animate(
                 withDuration: 0.3
                 , animations: {
-//                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
                     self.view.transform = CGAffineTransform(translationX: 0, y: -(self.loginButton.frame.origin.y / 2))
                 }
             )

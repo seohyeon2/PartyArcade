@@ -19,6 +19,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var userlistTableView: UITableView!
     @IBOutlet weak var inviteCodeTextView: UITextView!
+    @IBOutlet weak var startGameButton: UIButton!
     
     var playerCount: Int = 0
     var playerList: [UserInfo] = []
@@ -45,13 +46,14 @@ class LobbyViewController: UIViewController {
             .child(inviteCode)
             .observe(.value) { dataSnapshot in
                 
+                print("### 리스트 업데이트 ###")
+                
                 guard dataSnapshot.exists() else {
                     print("호스트가 나가서 방이 사라짐.")
                     self.view.window?.rootViewController?.dismiss(animated: true)
                     return
                 }
                 
-                print(dataSnapshot)
                 guard let asd = try? JSONSerialization.data(withJSONObject: dataSnapshot.value) else {
                     print("error")
                     return
@@ -76,6 +78,11 @@ class LobbyViewController: UIViewController {
                 }
                 
                 CurrentUserInfo.isHost = me.first?.isHost
+                if CurrentUserInfo.isHost == true {
+                    self.startGameButton.isEnabled = true
+                } else {
+                    self.startGameButton.isEnabled = false
+                }
                 
                 self.playerNameList = sorted.map { $0.name }
                 
@@ -83,8 +90,6 @@ class LobbyViewController: UIViewController {
                 let range = NSMakeRange(0, self.userlistTableView.numberOfSections)
                 let sections = NSIndexSet(indexesIn: range)
                 self.userlistTableView.reloadSections(sections as IndexSet, with: .automatic)
-            } withCancel: { error in
-                print(error)
             }
     }
     
@@ -112,7 +117,7 @@ class LobbyViewController: UIViewController {
     }
     
     @IBAction func gameStartButtonTapped(_ sender: UIButton) {
-        
+        print("게임시작 버튼 눌림")
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {

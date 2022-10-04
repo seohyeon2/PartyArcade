@@ -323,6 +323,7 @@
                     <connections>
                         <outlet property="gameNameLabel" destination="SYG-VT-bMg" id="F8Y-q4-pf6"/>
                         <outlet property="inviteCodeTextView" destination="xEy-o8-aan" id="9wO-w4-wBz"/>
+                        <outlet property="startGameButton" destination="VZ0-72-d0x" id="jfF-5d-EUc"/>
                         <outlet property="userlistTableView" destination="gUt-gB-SQ6" id="L5a-cz-L1l"/>
                     </connections>
                 </viewController>
@@ -487,6 +488,9 @@
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
                                             <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="DtY-8D-QFM" eventType="touchUpInside" id="B3X-Vf-CaF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
