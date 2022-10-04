@@ -15,9 +15,15 @@
 		05BFF3CB28EB5BDC004BCC5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BFF3C928EB5BDC004BCC5F /* LaunchScreen.storyboard */; };
 		05BFF3D428EB5CF8004BCC5F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFF3D328EB5CF8004BCC5F /* FirebaseDatabase */; };
 		05BFF3D628EB5CF8004BCC5F /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFF3D528EB5CF8004BCC5F /* FirebaseDatabaseSwift */; };
-		05BFF3D828EB5D48004BCC5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3D728EB5D48004BCC5F /* LoginViewController.swift */; };
+		05BFF3D828EB5D48004BCC5F /* HostLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3D728EB5D48004BCC5F /* HostLoginViewController.swift */; };
 		05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */; };
 		05BFF3DC28EB5D51004BCC5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05BFF3DB28EB5D51004BCC5F /* GoogleService-Info.plist */; };
+		B419ECD428EC25600001E3DE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECD328EC25600001E3DE /* RoomViewController.swift */; };
+		B419ECD928EC28910001E3DE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECD828EC28910001E3DE /* UserInfo.swift */; };
+		B419ECDB28EC2A2E0001E3DE /* CurrentUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */; };
+		B419ECDD28EC2CE30001E3DE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDC28EC2CE30001E3DE /* MainViewController.swift */; };
+		B419ECDF28EC37D40001E3DE /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDE28EC37D40001E3DE /* ClientViewController.swift */; };
+		B419ECE128EC3A6B0001E3DE /* ClientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +35,15 @@
 		05BFF3C728EB5BDC004BCC5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BFF3CA28EB5BDC004BCC5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05BFF3CC28EB5BDC004BCC5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05BFF3D728EB5D48004BCC5F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		05BFF3D728EB5D48004BCC5F /* HostLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostLoginViewController.swift; sourceTree = "<group>"; };
 		05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
 		05BFF3DB28EB5D51004BCC5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B419ECD328EC25600001E3DE /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		B419ECD828EC28910001E3DE /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserInfo.swift; sourceTree = "<group>"; };
+		B419ECDC28EC2CE30001E3DE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B419ECDE28EC37D40001E3DE /* ClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,16 +80,46 @@
 			children = (
 				05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */,
 				05BFF3C028EB5BDC004BCC5F /* SceneDelegate.swift */,
-				05BFF3C228EB5BDC004BCC5F /* ViewController.swift */,
-				05BFF3C428EB5BDC004BCC5F /* Main.storyboard */,
+				B419ECD728EC25720001E3DE /* Model */,
+				B419ECD628EC256E0001E3DE /* Controllers */,
+				B419ECD528EC25650001E3DE /* Views */,
 				05BFF3C728EB5BDC004BCC5F /* Assets.xcassets */,
 				05BFF3C928EB5BDC004BCC5F /* LaunchScreen.storyboard */,
 				05BFF3DB28EB5D51004BCC5F /* GoogleService-Info.plist */,
-				05BFF3D728EB5D48004BCC5F /* LoginViewController.swift */,
-				05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */,
 				05BFF3CC28EB5BDC004BCC5F /* Info.plist */,
 			);
 			path = PartyArcade;
+			sourceTree = "<group>";
+		};
+		B419ECD528EC25650001E3DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05BFF3C428EB5BDC004BCC5F /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B419ECD628EC256E0001E3DE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B419ECD328EC25600001E3DE /* RoomViewController.swift */,
+				05BFF3D728EB5D48004BCC5F /* HostLoginViewController.swift */,
+				B419ECDC28EC2CE30001E3DE /* MainViewController.swift */,
+				05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */,
+				05BFF3C228EB5BDC004BCC5F /* ViewController.swift */,
+				B419ECDE28EC37D40001E3DE /* ClientViewController.swift */,
+				B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B419ECD728EC25720001E3DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B419ECD828EC28910001E3DE /* UserInfo.swift */,
+				B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BFF3D828EB5D48004BCC5F /* LoginViewController.swift in Sources */,
+				B419ECE128EC3A6B0001E3DE /* ClientLoginViewController.swift in Sources */,
+				05BFF3D828EB5D48004BCC5F /* HostLoginViewController.swift in Sources */,
 				05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */,
 				05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */,
+				B419ECDF28EC37D40001E3DE /* ClientViewController.swift in Sources */,
+				B419ECD428EC25600001E3DE /* RoomViewController.swift in Sources */,
 				05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */,
+				B419ECD928EC28910001E3DE /* UserInfo.swift in Sources */,
+				B419ECDD28EC2CE30001E3DE /* MainViewController.swift in Sources */,
+				B419ECDB28EC2A2E0001E3DE /* CurrentUserInfo.swift in Sources */,
 				05BFF3C128EB5BDC004BCC5F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,23 +8,12 @@
 import UIKit
 import FirebaseDatabase
 
-enum Section {
-    case main
-}
-
-struct UserInfo: Codable, Hashable {
-    let name: String
-    let uuid: UUID
-    let loginTime: Double
-}
-
-class LoginViewController: UIViewController {
+class HostLoginViewController: UIViewController {
 
     // MARK: - Properties
     
     let database = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     let connectedRef = Database.database().reference(withPath: ".info/connected")
-    let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -66,16 +55,28 @@ class LoginViewController: UIViewController {
         
         guard let nickname = nicknameTextField.text else { return }
         
-        let user = UserInfo(name: nickname, uuid: UUID(), loginTime: Date().timeIntervalSince1970)
-        let encodedData = try! JSONEncoder().encode(user)
-        let jsonData = try! JSONSerialization.jsonObject(with: encodedData)
+        let user = UserInfo(
+            name: nickname,
+            uuid: UUID(),
+            loginTime: Date().timeIntervalSince1970,
+            isHost: CurrentUserInfo.isHost ?? false
+        )
         
-        myConnectionsRef.child("connections").child(user.uuid.uuidString).setValue(jsonData)
-        myConnectionsRef.child("connections").child(user.uuid.uuidString).onDisconnectRemoveValue()
+        CurrentUserInfo.userInfo = user
+        
+//        let encodedData = try! JSONEncoder().encode(user)
+//        let jsonData = try! JSONSerialization.jsonObject(with: encodedData)
+        
+//        myConnectionsRef.child("connections").child(user.uuid.uuidString).setValue(jsonData)
+//        myConnectionsRef.child("connections").child(user.uuid.uuidString).onDisconnectRemoveValue()
+    }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true)
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension HostLoginViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         print(textField.text)
         
@@ -87,7 +88,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-extension LoginViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension HostLoginViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(info)
         profileImage.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage

@@ -17,6 +17,7 @@ class LobbyViewController: UIViewController {
     
     
     @IBOutlet weak var userlistTableView: UITableView!
+    @IBOutlet weak var inviteCodeTextView: UITextView!
     
     var playerCount: Int = 0
     var playerList: [UserInfo] = []
@@ -30,21 +31,47 @@ class LobbyViewController: UIViewController {
         userlistTableView.delegate = self
         userlistTableView.dataSource = self
         
-        myConnectionsRef.child("connections").observe(.value) { dataSnapshot in
+        guard let currentGame = CurrentUserInfo.currentGame,
+              let inviteCode = CurrentUserInfo.currentRoom?.uuidString else { return }
+        
+        inviteCodeTextView.isEditable = false
+        inviteCodeTextView.textContainer.maximumNumberOfLines = 2
+        inviteCodeTextView.text = "초대코드 :\n\(inviteCode)"
+        
+        myConnectionsRef
+            .child("rooms")
+            .child(inviteCode)
+            .observe(.value) { dataSnapshot in
             
-            guard let playerList = (dataSnapshot.value as? [String: [String: Any]]) else { return }
+            print(dataSnapshot)
+            guard let playerList = (dataSnapshot.value as? [String: [String: [String: Any]]]) else { return }
             
-            let mapped = playerList.map { asd -> UserInfo in
-                guard let data = try? JSONSerialization.data(withJSONObject: asd.value),
-                      let object = try? JSONDecoder().decode(UserInfo.self, from: data) else { return UserInfo(name: "", uuid: UUID(), loginTime: 0.0) }
-                return object
-            }
+                guard let aaa = playerList.map({ bbb -> [[String: Any]] in
+                    bbb.value.map({ ccc -> [String: Any] in
+                        ccc.value
+                    })
+                }).first else { return }
+                
+                let mapped = aaa.map { bbb -> UserInfo in
+                    guard let data = try? JSONSerialization.data(withJSONObject: bbb),
+                          let object = try? JSONDecoder().decode(UserInfo.self, from: data) else {
+                        return UserInfo(
+                            name: "",
+                            uuid: UUID(),
+                            loginTime: 0.0,
+                            isHost: false
+                        ) }
+                        
+                    return object
+                }
+                
+                
             
             let sorted = mapped.sorted { $0.loginTime > $1.loginTime }
             
             self.playerList = sorted
             self.playerNameList = sorted.map { $0.name }
-            
+
             self.playerCount = sorted.count
             self.userlistTableView.reloadData()
             
@@ -53,6 +80,17 @@ class LobbyViewController: UIViewController {
     
     @IBAction func changeNicknameButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func gameStartButtonTapped(_ sender: UIButton) {
+        guard let currentGame = CurrentUserInfo.currentGame,
+              let inviteCode = CurrentUserInfo.currentRoom?.uuidString else { return }
+        myConnectionsRef
+            .child(currentGame.string)
+            .child(inviteCode)
+            .getData { error, dataSnapshot in
+            print(dataSnapshot)
+        }
     }
 }
 
