@@ -72,7 +72,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wM8-Dd-Di0">
                                 <rect key="frame" x="62" y="190.5" width="290" height="515"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagom" translatesAutoresizingMaskIntoConstraints="NO" id="exL-PC-GMr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="host" translatesAutoresizingMaskIntoConstraints="NO" id="exL-PC-GMr">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="290"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="exL-PC-GMr" secondAttribute="height" multiplier="1:1" id="zQY-Op-POI"/>
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HJ-Nc-0Pe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2716" y="82"/>
+            <point key="canvasLocation" x="2341" y="-221"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="pab-ib-Lib">
@@ -501,6 +501,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Yagom" width="1176" height="964"/>
+        <image name="host" width="1176" height="1110"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

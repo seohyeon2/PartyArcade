@@ -59,7 +59,7 @@ class LobbyViewController: UIViewController {
                 let mapped = zxc?.userList.map {
                     $0.value
                 }
-                let optionalSorted = mapped?.sorted { $0.loginTime > $1.loginTime }
+                let optionalSorted = mapped?.sorted { $0.loginTime < $1.loginTime }
                 
                 guard let sorted = optionalSorted else { return }
                 
@@ -78,6 +78,20 @@ class LobbyViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func changeNicknameButtonTapped(_ sender: UIButton) {
+        if CurrentUserInfo.isHost! {
+            myConnectionsRef
+                .child("rooms")
+                .child(CurrentUserInfo.currentRoom!.uuidString)
+                .removeValue()
+        } else {
+            myConnectionsRef
+                .child("rooms")
+                .child(CurrentUserInfo.currentRoom!.uuidString)
+                .child("userList")
+                .child(CurrentUserInfo.userInfo!.uuid.uuidString)
+                .removeValue()
+        }
+        
         dismiss(animated: true)
     }
     
@@ -117,7 +131,12 @@ extension LobbyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userlistTableView.dequeueReusableCell(withIdentifier: "playerInfoCell", for: indexPath)
         
-        cell.imageView?.image = UIImage(named: "Yagom")
+        if playerList[indexPath.row].isHost {
+            cell.imageView?.image = UIImage(named: "host")
+        } else {
+            cell.imageView?.image = UIImage(named: "client")
+        }
+        
         cell.textLabel?.text = playerList[indexPath.row].name
         
         return cell
