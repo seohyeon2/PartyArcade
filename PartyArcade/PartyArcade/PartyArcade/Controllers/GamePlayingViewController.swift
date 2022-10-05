@@ -18,6 +18,8 @@ class GamePlayingViewController: UIViewController {
     private var currentIndex = 0
     private var answerCount = 0
     
+    @IBOutlet weak var mainStackViewBottomConstraint: NSLayoutConstraint!
+    
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         if currentIndex == CurrentUserInfo.currentQuestions.count {
             return
@@ -44,16 +46,43 @@ class GamePlayingViewController: UIViewController {
             }
             
             self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-            self.remainQuestionLabel.text = "남은 문제: \(CurrentUserInfo.currentQuestions.count)"
+            self.remainQuestionLabel.text = "총 문제: \(CurrentUserInfo.currentQuestions.count)"
         }
     }
+    
     private func moveResultVC() {
-        print("👍🏻")
+        print("👍🏻 맞춘 문제 개수 : \(answerCount) ")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentQuestionLabel.text = "\(currentIndex + 1)번 문제"
-        remainQuestionLabel.text = "총 문제: \(CurrentUserInfo.currentQuestions.count)"
+        
+        self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
+        self.remainQuestionLabel.text = "총 문제: \(CurrentUserInfo.currentQuestions.count)"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func textViewMoveUp(_ notification: NSNotification){
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.mainStackViewBottomConstraint.constant = keyboardSize.height + 10
+                self.view.layoutIfNeeded()
+            })
+            
+        }
+    }
+    
+    @objc func textViewMoveDown(_ notification: NSNotification){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.mainStackViewBottomConstraint.constant = 80
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
