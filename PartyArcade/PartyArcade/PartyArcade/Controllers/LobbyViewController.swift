@@ -8,6 +8,11 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseDatabaseSwift
+import FirebaseSharedSwift
+
+struct GameQuestion: Decodable {
+    let answer, data: String
+}
 
 class LobbyViewController: UIViewController {
     
@@ -116,9 +121,13 @@ class LobbyViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    
     @IBAction func gameStartButtonTapped(_ sender: UIButton) {
-        print("게임시작 버튼 눌림")
+        
+
     }
+    
+
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         guard let inviteCode = inviteCodeTextView.text else { return }

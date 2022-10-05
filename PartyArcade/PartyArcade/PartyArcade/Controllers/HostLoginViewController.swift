@@ -46,8 +46,6 @@ class HostLoginViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func connectButtonTapped(_ sender: UIButton) {
-        print(nicknameTextField.text)
-        
         guard let nickname = nicknameTextField.text else { return }
         
         let user = UserInfo(
@@ -89,8 +87,6 @@ class HostLoginViewController: UIViewController {
 
 extension HostLoginViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        print(textField.text)
-        
         if textField.text == "" {
             loginButton.isEnabled = false
         } else {
