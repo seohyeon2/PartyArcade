@@ -2,16 +2,17 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kdm-Hg-kzG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Av0-qs-zQZ">
             <objects>
-                <viewController id="Kdm-Hg-kzG" sceneMemberID="viewController">
+                <viewController id="Kdm-Hg-kzG" customClass="LoginViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDd-m1-F57">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +43,8 @@
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="QBt-Io-01X" kind="show" id="hyZ-EJ-hYi"/>
+                                                    <action selector="connectButtonTapped:" destination="Kdm-Hg-kzG" eventType="touchUpInside" id="IzI-WJ-FuF"/>
+                                                    <segue destination="QBt-Io-01X" kind="presentation" modalPresentationStyle="fullScreen" id="hyZ-EJ-hYi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -73,21 +75,26 @@
                             <constraint firstItem="C1e-on-LP8" firstAttribute="leading" secondItem="WlM-T4-7e3" secondAttribute="leading" constant="81" id="vh3-PJ-V3N"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="lmJ-dm-a5R" id="7lA-01-8GN"/>
+                        <outlet property="nicknameTextField" destination="B0m-H1-Y5w" id="v3s-zU-ifC"/>
+                        <outlet property="profileImage" destination="exL-PC-GMr" id="udf-Pq-CQF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8g-Ti-08t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200" y="82"/>
+            <point key="canvasLocation" x="114" y="82"/>
         </scene>
-        <!--View Controller-->
+        <!--Lobby View Controller-->
         <scene sceneID="d4y-E6-lC6">
             <objects>
-                <viewController id="QBt-Io-01X" sceneMemberID="viewController">
+                <viewController id="QBt-Io-01X" customClass="LobbyViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jxa-Bn-H3X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="c34-qJ-qUK">
-                                <rect key="frame" x="10" y="49" width="394" height="778"/>
+                                <rect key="frame" x="10" y="49" width="394" height="798"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 접속자" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYG-VT-bMg">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="37"/>
@@ -96,7 +103,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gUt-gB-SQ6">
-                                        <rect key="frame" x="0.0" y="57" width="394" height="650"/>
+                                        <rect key="frame" x="0.0" y="57" width="394" height="670"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="playerInfoCell" rowHeight="78" id="9Dm-c0-eUr">
@@ -121,7 +128,7 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-Cd-UeD">
-                                        <rect key="frame" x="0.0" y="727" width="394" height="51"/>
+                                        <rect key="frame" x="0.0" y="747" width="394" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ur-Ox-rsh">
                                                 <rect key="frame" x="0.0" y="0.0" width="192" height="51"/>
@@ -131,6 +138,9 @@
                                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="changeNicknameButtonTapped:" destination="QBt-Io-01X" eventType="touchUpInside" id="jxg-A3-Wye"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZ0-72-d0x">
                                                 <rect key="frame" x="202" y="0.0" width="192" height="51"/>
@@ -156,6 +166,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QiD-Qf-xsB"/>
+                    <connections>
+                        <outlet property="userlistTableView" destination="gUt-gB-SQ6" id="L5a-cz-L1l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1a-sv-SYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,7 +177,7 @@
         <!--View Controller-->
         <scene sceneID="AFO-Ge-uJS">
             <objects>
-                <viewController id="kPj-kY-m6M" sceneMemberID="viewController">
+                <viewController id="kPj-kY-m6M" customClass="ViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Mo-85-D6P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
