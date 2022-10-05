@@ -61,6 +61,10 @@ class LobbyViewController: UIViewController {
                 }
                 let zxc = try? JSONDecoder().decode(Room.self, from: asd)
                 
+                if zxc!.isPlaying {
+                    self.performSegue(withIdentifier: "moveToGamePlaying", sender: nil)
+                }
+                
                 let mapped = zxc?.userList.map {
                     $0.value
                 }
@@ -119,8 +123,13 @@ class LobbyViewController: UIViewController {
     
     
     @IBAction func gameStartButtonTapped(_ sender: UIButton) {
-        
-
+        myConnectionsRef
+            .child("rooms")
+            .child(CurrentUserInfo.currentRoom!.uuidString)
+            .updateChildValues([
+                "game": CurrentUserInfo.currentGame!.rawValue,
+                "isPlaying": true
+            ])
     }
     
 

@@ -9,5 +9,6 @@ import Foundation
 
 struct Room: Codable {
     let game: Game
+    let isPlaying: Bool
     let userList: [String: UserInfo]
 }

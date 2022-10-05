@@ -303,7 +303,6 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="gameStartButtonTapped:" destination="QBt-Io-01X" eventType="touchUpInside" id="RtY-lQ-6cX"/>
-                                                    <segue destination="dJ7-Hr-vj2" kind="presentation" modalPresentationStyle="fullScreen" id="sVK-8S-tS1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -326,6 +325,7 @@
                         <outlet property="inviteCodeTextView" destination="xEy-o8-aan" id="9wO-w4-wBz"/>
                         <outlet property="startGameButton" destination="VZ0-72-d0x" id="jfF-5d-EUc"/>
                         <outlet property="userlistTableView" destination="gUt-gB-SQ6" id="L5a-cz-L1l"/>
+                        <segue destination="dJ7-Hr-vj2" kind="presentation" identifier="moveToGamePlaying" modalPresentationStyle="fullScreen" id="Nxx-V3-EL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1a-sv-SYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
