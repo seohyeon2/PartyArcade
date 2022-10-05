@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		059630A628EDAAD400D8B172 /* GamePlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */; };
+		059630A828EDADEB00D8B172 /* GameQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059630A728EDADEB00D8B172 /* GameQuestion.swift */; };
 		05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */; };
 		05BFF3C128EB5BDC004BCC5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3C028EB5BDC004BCC5F /* SceneDelegate.swift */; };
 		05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3C228EB5BDC004BCC5F /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayingViewController.swift; sourceTree = "<group>"; };
+		059630A728EDADEB00D8B172 /* GameQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestion.swift; sourceTree = "<group>"; };
 		05BFF3BB28EB5BDB004BCC5F /* PartyArcade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyArcade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BFF3C028EB5BDC004BCC5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				05BFF3C228EB5BDC004BCC5F /* ViewController.swift */,
 				B419ECDE28EC37D40001E3DE /* ClientViewController.swift */,
 				B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */,
+				059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				B419ECD828EC28910001E3DE /* UserInfo.swift */,
 				B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */,
 				B4B5D3C028EC692900D7EC29 /* Rooms.swift */,
+				059630A728EDADEB00D8B172 /* GameQuestion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,7 +215,9 @@
 				B4B5D3C128EC692900D7EC29 /* Rooms.swift in Sources */,
 				05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */,
 				05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */,
+				059630A828EDADEB00D8B172 /* GameQuestion.swift in Sources */,
 				B419ECDF28EC37D40001E3DE /* ClientViewController.swift in Sources */,
+				059630A628EDAAD400D8B172 /* GamePlayingViewController.swift in Sources */,
 				B419ECD428EC25600001E3DE /* RoomViewController.swift in Sources */,
 				05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */,
 				B419ECD928EC28910001E3DE /* UserInfo.swift in Sources */,

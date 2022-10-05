@@ -10,10 +10,6 @@ import FirebaseDatabase
 import FirebaseDatabaseSwift
 import FirebaseSharedSwift
 
-struct GameQuestion: Decodable {
-    let answer, data: String
-}
-
 class LobbyViewController: UIViewController {
     
     // MARK: - Properties

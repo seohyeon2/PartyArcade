@@ -36,17 +36,12 @@ class MainViewController: UIViewController {
 
     let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
     }
 
-    
-    private var questions = [GameQuestion]()
-
-    
     @IBAction func gameButtonTapped(_ sender: UIButton) {
         
         guard let game = Game(rawValue: sender.tag),
@@ -102,12 +97,12 @@ class MainViewController: UIViewController {
                     return
                 }
                 
-                self.questions.append(data)
+                CurrentUserInfo.currentQuestions.append(data)
                 self.myConnectionsRef
                     .child("rooms")
                     .child(CurrentUserInfo.currentRoom!.uuidString)
                     .child("\(currentUserInfo.name)_\(game.koreanString)")
-                    .child("\(self.questions.count - 1)")
+                    .child("\(CurrentUserInfo.currentQuestions.count - 1)")
                     .setValue([
                         "data": "\(data.data)",
                         "answer": "\(data.answer)",
