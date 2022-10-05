@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,12 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="baf-hm-Rer">
-                                <rect key="frame" x="18.5" y="420.5" width="377" height="55"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome to Party Arcade" translatesAutoresizingMaskIntoConstraints="NO" id="myq-zf-NtN">
+                                <rect key="frame" x="64" y="83" width="286" height="69"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SunriseWithYagom" translatesAutoresizingMaskIntoConstraints="NO" id="a66-9F-dH2">
+                                <rect key="frame" x="0.0" y="236" width="414" height="401"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="o5i-13-x5J">
+                                <rect key="frame" x="20" y="687" width="374" height="125"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66P-OE-aNM">
-                                        <rect key="frame" x="0.0" y="0.0" width="178.5" height="55"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
+                                        <color key="backgroundColor" name="PeachColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="방 만들기">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
@@ -34,8 +41,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dz5-B0-6uf">
-                                        <rect key="frame" x="198.5" y="0.0" width="178.5" height="55"/>
-                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <rect key="frame" x="0.0" y="70" width="374" height="55"/>
+                                        <color key="backgroundColor" name="PeachColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="방 입장하기">
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
@@ -52,14 +59,21 @@
                         <viewLayoutGuide key="safeArea" id="UCB-Yr-orq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="baf-hm-Rer" firstAttribute="centerY" secondItem="6L4-P3-bRn" secondAttribute="centerY" id="Vig-n8-Nhc"/>
-                            <constraint firstItem="baf-hm-Rer" firstAttribute="centerX" secondItem="6L4-P3-bRn" secondAttribute="centerX" id="haB-mO-VGq"/>
+                            <constraint firstItem="a66-9F-dH2" firstAttribute="trailing" secondItem="UCB-Yr-orq" secondAttribute="trailing" id="0D1-g9-3Up"/>
+                            <constraint firstItem="UCB-Yr-orq" firstAttribute="trailing" secondItem="o5i-13-x5J" secondAttribute="trailing" constant="20" id="7qa-nU-8oT"/>
+                            <constraint firstItem="o5i-13-x5J" firstAttribute="top" secondItem="a66-9F-dH2" secondAttribute="bottom" constant="50" id="TTJ-4f-tuh"/>
+                            <constraint firstItem="UCB-Yr-orq" firstAttribute="bottom" secondItem="o5i-13-x5J" secondAttribute="bottom" constant="50" id="VoA-se-SfU"/>
+                            <constraint firstItem="a66-9F-dH2" firstAttribute="leading" secondItem="UCB-Yr-orq" secondAttribute="leading" id="ols-Km-7sY"/>
+                            <constraint firstItem="UCB-Yr-orq" firstAttribute="trailing" secondItem="myq-zf-NtN" secondAttribute="trailing" constant="64" id="rAM-CY-34l"/>
+                            <constraint firstItem="myq-zf-NtN" firstAttribute="leading" secondItem="UCB-Yr-orq" secondAttribute="leading" constant="64" id="vOh-80-w8K"/>
+                            <constraint firstItem="o5i-13-x5J" firstAttribute="leading" secondItem="UCB-Yr-orq" secondAttribute="leading" constant="20" id="yxh-hA-JrK"/>
+                            <constraint firstItem="myq-zf-NtN" firstAttribute="top" secondItem="UCB-Yr-orq" secondAttribute="top" constant="35" id="z5k-RS-3vy"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoX-IY-pOk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-851" y="82"/>
+            <point key="canvasLocation" x="-852.17391304347836" y="81.696428571428569"/>
         </scene>
         <!--Host Login View Controller-->
         <scene sceneID="Av0-qs-zQZ">
@@ -70,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wM8-Dd-Di0">
-                                <rect key="frame" x="62" y="185.5" width="290" height="525"/>
+                                <rect key="frame" x="62" y="218" width="290" height="460"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="host" translatesAutoresizingMaskIntoConstraints="NO" id="exL-PC-GMr">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="289.5"/>
@@ -79,47 +93,56 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="닉네임을 입력해주세요 ☺️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFo-Sn-9x0">
-                                        <rect key="frame" x="0.0" y="309.5" width="290" height="26.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="309.5" width="290" height="29"/>
+                                        <color key="backgroundColor" name="PeachColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0m-H1-Y5w">
-                                        <rect key="frame" x="0.0" y="356" width="290" height="34"/>
+                                        <rect key="frame" x="0.0" y="358.5" width="290" height="34"/>
+                                        <color key="backgroundColor" name="PeachColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmJ-dm-a5R">
-                                        <rect key="frame" x="0.0" y="410" width="290" height="47.5"/>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="접속">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="connectButtonTapped:" destination="Kdm-Hg-kzG" eventType="touchUpInside" id="IzI-WJ-FuF"/>
-                                            <segue destination="NVi-HX-3FF" kind="presentation" modalPresentationStyle="fullScreen" id="uUC-LQ-eaE"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-Sf-JdD">
-                                        <rect key="frame" x="0.0" y="477.5" width="290" height="47.5"/>
-                                        <color key="backgroundColor" systemColor="systemRedColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="뒤로">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="backButtonTapped:" destination="VRH-pw-iCt" eventType="touchUpInside" id="AUF-qg-Gcj"/>
-                                            <action selector="backButtonTapped:" destination="Kdm-Hg-kzG" eventType="touchUpInside" id="nYP-8s-4JP"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="CRX-5R-f6a">
+                                        <rect key="frame" x="0.0" y="412.5" width="290" height="47.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-Sf-JdD">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="47.5"/>
+                                                <color key="backgroundColor" red="0.78714165805785119" green="0.18780784757648644" blue="0.15475112524934889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" name="PurpleColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="뒤로">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="backButtonTapped:" destination="VRH-pw-iCt" eventType="touchUpInside" id="AUF-qg-Gcj"/>
+                                                    <action selector="backButtonTapped:" destination="Kdm-Hg-kzG" eventType="touchUpInside" id="nYP-8s-4JP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmJ-dm-a5R">
+                                                <rect key="frame" x="152.5" y="0.0" width="137.5" height="47.5"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <color key="tintColor" name="PurpleColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="접속">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="connectButtonTapped:" destination="Kdm-Hg-kzG" eventType="touchUpInside" id="IzI-WJ-FuF"/>
+                                                    <segue destination="NVi-HX-3FF" kind="presentation" modalPresentationStyle="fullScreen" id="uUC-LQ-eaE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WlM-T4-7e3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="PeachColor"/>
                         <constraints>
                             <constraint firstItem="wM8-Dd-Di0" firstAttribute="centerX" secondItem="aDd-m1-F57" secondAttribute="centerX" id="Itw-kX-wyu"/>
                             <constraint firstItem="wM8-Dd-Di0" firstAttribute="centerY" secondItem="aDd-m1-F57" secondAttribute="centerY" id="d30-sd-GWJ"/>
@@ -450,7 +473,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wiy-gW-n0d">
-                                <rect key="frame" x="62" y="185.5" width="290" height="525"/>
+                                <rect key="frame" x="62" y="218" width="290" height="460"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagom" translatesAutoresizingMaskIntoConstraints="NO" id="bdx-MD-y2F">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="289.5"/>
@@ -459,46 +482,52 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="닉네임을 입력해주세요 ☺️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wp-ou-n6f">
-                                        <rect key="frame" x="0.0" y="309.5" width="290" height="26.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="309.5" width="290" height="29"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAl-Z2-rj8">
-                                        <rect key="frame" x="0.0" y="356" width="290" height="34"/>
+                                        <rect key="frame" x="0.0" y="358.5" width="290" height="34"/>
+                                        <color key="backgroundColor" name="PeachColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1W-A3-jnR">
-                                        <rect key="frame" x="0.0" y="410" width="290" height="47.5"/>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="접속">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="connectButtonTapped:" destination="DtY-8D-QFM" eventType="touchUpInside" id="TYb-o2-DfH"/>
-                                            <segue destination="QBt-Io-01X" kind="presentation" modalPresentationStyle="fullScreen" id="WWs-oz-qX5"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVg-lM-oGe">
-                                        <rect key="frame" x="0.0" y="477.5" width="290" height="47.5"/>
-                                        <color key="backgroundColor" systemColor="systemRedColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="뒤로">
-                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="backButtonTapped:" destination="DtY-8D-QFM" eventType="touchUpInside" id="B3X-Vf-CaF"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="iql-G0-3xY">
+                                        <rect key="frame" x="0.0" y="412.5" width="290" height="47.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVg-lM-oGe">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="47.5"/>
+                                                <color key="backgroundColor" red="0.78714165810000003" green="0.18780784759999999" blue="0.15475112520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="뒤로">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="backButtonTapped:" destination="DtY-8D-QFM" eventType="touchUpInside" id="B3X-Vf-CaF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1W-A3-jnR">
+                                                <rect key="frame" x="152.5" y="0.0" width="137.5" height="47.5"/>
+                                                <color key="backgroundColor" name="ZZBAEColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="접속">
+                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="connectButtonTapped:" destination="DtY-8D-QFM" eventType="touchUpInside" id="TYb-o2-DfH"/>
+                                                    <segue destination="QBt-Io-01X" kind="presentation" modalPresentationStyle="fullScreen" id="WWs-oz-qX5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZzN-OW-9fS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="PeachColor"/>
                         <constraints>
                             <constraint firstItem="bdx-MD-y2F" firstAttribute="width" secondItem="WCj-p8-Dey" secondAttribute="width" multiplier="0.7" id="2Yo-sI-UOn"/>
                             <constraint firstItem="wiy-gW-n0d" firstAttribute="centerY" secondItem="WCj-p8-Dey" secondAttribute="centerY" id="QUC-TZ-uRF"/>
@@ -608,12 +637,23 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lMw-Yj-gvy"/>
+        <segue reference="WWs-oz-qX5"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="SunriseWithYagom" width="375" height="401"/>
+        <image name="Welcome to Party Arcade" width="271" height="69"/>
         <image name="Yagom" width="1176" height="964"/>
         <image name="client" width="1176" height="1110"/>
         <image name="host" width="1176" height="1110"/>
+        <namedColor name="PeachColor">
+            <color red="0.95294117647058818" green="0.70588235294117652" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PurpleColor">
+            <color red="0.80000000000000004" green="0.55686274509803924" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ZZBAEColor">
+            <color red="0.23921568627450981" green="0.46274509803921571" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -631,12 +671,6 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
