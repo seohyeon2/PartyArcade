@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kdm-Hg-kzG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h3I-h7-u5m">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -215,14 +217,243 @@
             </objects>
             <point key="canvasLocation" x="1902.8985507246377" y="93.75"/>
         </scene>
+        <!--Select Game View Controller-->
+        <scene sceneID="fub-mx-6bW">
+            <objects>
+                <viewController id="dfp-zw-8g5" customClass="SelectGameViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bfp-sr-1lA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qz-ci-UCf">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Party Arcade" id="Vpu-oo-gui">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="questionmark.circle" catalog="system" style="plain" id="Tge-IN-Mfc"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tDU-3o-D0H">
+                                <rect key="frame" x="20" y="108" width="374" height="754"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5kh-hm-9tn">
+                                    <size key="itemSize" width="374" height="140"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectGameCell" id="kPa-6U-ZEQ" customClass="SelectGameCell" customModule="PartyArcade" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vMF-am-Kga">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-op-gbc">
+                                                    <rect key="frame" x="10" y="10" width="354" height="120"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사진보고 제목 맞추기☺️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dk9-6c-fGS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="164.5" height="20.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="w6S-gU-bUO">
+                                                            <rect key="frame" x="0.0" y="39.5" width="190" height="80.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RW-ob-qzM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="80.5" height="80.5"/>
+                                                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="5RW-ob-qzM" secondAttribute="height" multiplier="1:1" id="waf-G2-wMW"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="게임 이름">
+                                                                        <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                                    </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="didTapButton:" destination="dfp-zw-8g5" eventType="touchUpInside" id="AKz-8h-kcb"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8i-uD-FRU">
+                                                                    <rect key="frame" x="109.5" y="0.0" width="80.5" height="80.5"/>
+                                                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="y8i-uD-FRU" secondAttribute="height" multiplier="1:1" id="pds-e8-Ahn"/>
+                                                                        <constraint firstAttribute="height" constant="80.5" id="w7P-Hi-S3u"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" title="게임 이름">
+                                                                        <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                                    </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="didTapButton:" destination="dfp-zw-8g5" eventType="touchUpInside" id="g0B-0X-13j"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="eRN-op-gbc" secondAttribute="bottom" constant="10" id="FxH-b9-nmN"/>
+                                                <constraint firstAttribute="trailing" secondItem="eRN-op-gbc" secondAttribute="trailing" constant="10" id="VGw-Ga-YI2"/>
+                                                <constraint firstItem="eRN-op-gbc" firstAttribute="top" secondItem="vMF-am-Kga" secondAttribute="top" constant="10" id="rye-hh-wwD"/>
+                                                <constraint firstItem="eRN-op-gbc" firstAttribute="leading" secondItem="vMF-am-Kga" secondAttribute="leading" constant="10" id="zJQ-jS-41y"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="374" height="140"/>
+                                        <connections>
+                                            <outlet property="firstGameButton" destination="5RW-ob-qzM" id="PAh-kC-0nO"/>
+                                            <outlet property="secondGameButton" destination="y8i-uD-FRU" id="BJ3-Io-3x0"/>
+                                            <outlet property="titleLabel" destination="dk9-6c-fGS" id="CYc-ag-lev"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="dfp-zw-8g5" id="hSx-Ph-7IK"/>
+                                    <outlet property="delegate" destination="dfp-zw-8g5" id="Mj6-Sf-HBh"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jdL-7B-QN1"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="jdL-7B-QN1" firstAttribute="trailing" secondItem="tDU-3o-D0H" secondAttribute="trailing" constant="20" id="M18-ij-OOX"/>
+                            <constraint firstItem="tDU-3o-D0H" firstAttribute="leading" secondItem="jdL-7B-QN1" secondAttribute="leading" constant="20" id="PFP-Y9-BJ1"/>
+                            <constraint firstItem="tDU-3o-D0H" firstAttribute="bottom" secondItem="jdL-7B-QN1" secondAttribute="bottom" id="ego-8L-jEe"/>
+                            <constraint firstItem="7qz-ci-UCf" firstAttribute="leading" secondItem="Bfp-sr-1lA" secondAttribute="leading" id="iPx-am-Dn0"/>
+                            <constraint firstItem="7qz-ci-UCf" firstAttribute="centerX" secondItem="tDU-3o-D0H" secondAttribute="centerX" id="o2K-wL-YJO"/>
+                            <constraint firstItem="7qz-ci-UCf" firstAttribute="top" secondItem="jdL-7B-QN1" secondAttribute="top" id="xLT-Xq-JKG"/>
+                            <constraint firstItem="tDU-3o-D0H" firstAttribute="top" secondItem="7qz-ci-UCf" secondAttribute="bottom" constant="20" id="yUU-z2-VxW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1a6-pb-t25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200" y="808"/>
+        </scene>
+        <!--Start Game View Controller-->
+        <scene sceneID="SQ0-CM-hQ1">
+            <objects>
+                <viewController id="h3I-h7-u5m" customClass="StartGameViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iDa-SA-Zyy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoH-3Y-bHK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Party Arcade" id="U86-xT-o4x"/>
+                                </items>
+                            </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagom" translatesAutoresizingMaskIntoConstraints="NO" id="u1q-XN-KOQ">
+                                <rect key="frame" x="20" y="141" width="374" height="286"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="286" id="WH6-oT-eZt"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="정답 입력" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R0p-L9-Ojr">
+                                <rect key="frame" x="20" y="579" width="374" height="34"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktd-z4-haN">
+                                <rect key="frame" x="141" y="687" width="132" height="51"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="제출하기">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapSubmitButton:" destination="h3I-h7-u5m" eventType="touchUpInside" id="qXu-4R-arZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간 초 표시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-QY-rcb">
+                                <rect key="frame" x="133" y="469" width="148" height="37"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q4L-iy-Bjz"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="centerX" secondItem="WoH-3Y-bHK" secondAttribute="centerX" id="1Vb-ma-0yx"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="top" secondItem="WoH-3Y-bHK" secondAttribute="bottom" constant="53" id="6VC-cS-pcG"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="centerX" secondItem="Ktd-z4-haN" secondAttribute="centerX" id="GR5-nu-4c7"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="centerX" secondItem="r1C-QY-rcb" secondAttribute="centerX" id="QtO-rP-RKH"/>
+                            <constraint firstItem="r1C-QY-rcb" firstAttribute="top" secondItem="u1q-XN-KOQ" secondAttribute="bottom" constant="42" id="Vkc-e4-Mh2"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="leading" secondItem="iDa-SA-Zyy" secondAttribute="leadingMargin" id="fvU-R7-5vz"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="width" secondItem="Q4L-iy-Bjz" secondAttribute="width" multiplier="0.903382" id="hht-Gr-VD7"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="leading" secondItem="R0p-L9-Ojr" secondAttribute="leading" id="qDT-rY-gCC"/>
+                            <constraint firstItem="Q4L-iy-Bjz" firstAttribute="bottom" secondItem="Ktd-z4-haN" secondAttribute="bottom" constant="124" id="rcq-pE-sg4"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="trailing" secondItem="R0p-L9-Ojr" secondAttribute="trailing" id="u7i-zf-Cy8"/>
+                            <constraint firstItem="Ktd-z4-haN" firstAttribute="top" secondItem="R0p-L9-Ojr" secondAttribute="bottom" constant="74" id="vCU-tO-9ls"/>
+                            <constraint firstItem="WoH-3Y-bHK" firstAttribute="leading" secondItem="iDa-SA-Zyy" secondAttribute="leading" id="vD7-7x-cft"/>
+                            <constraint firstItem="u1q-XN-KOQ" firstAttribute="top" secondItem="iDa-SA-Zyy" secondAttribute="top" constant="141" id="was-WO-IyJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="answerInputTextField" destination="R0p-L9-Ojr" id="ltC-Ih-qub"/>
+                        <outlet property="questionImageView" destination="u1q-XN-KOQ" id="J8j-iE-N40"/>
+                        <outlet property="timeLabel" destination="r1C-QY-rcb" id="nKh-DK-Qpf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FQp-dJ-NVF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1137.68115942029" y="807.58928571428567"/>
+        </scene>
+        <!--Result View Controller-->
+        <scene sceneID="7eg-hV-ILM">
+            <objects>
+                <viewController storyboardIdentifier="ResultViewController" id="8qU-05-CkN" customClass="ResultViewController" customModule="PartyArcade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NS0-SM-ZO7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4L-fe-PjS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="결과 발표" id="GPD-3V-BVz"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IfE-tX-wns"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XB5-Db-zjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940" y="811"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Yagom" width="1176" height="964"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

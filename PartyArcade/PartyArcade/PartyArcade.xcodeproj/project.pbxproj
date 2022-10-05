@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058CA24728ECC72800591E1C /* SelectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CA24628ECC72800591E1C /* SelectGameViewController.swift */; };
+		058CA24928ECEA1300591E1C /* StartGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CA24828ECEA1300591E1C /* StartGameViewController.swift */; };
+		058CA24B28ECF6F400591E1C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CA24A28ECF6F400591E1C /* ResultViewController.swift */; };
 		05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */; };
 		05BFF3C128EB5BDC004BCC5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3C028EB5BDC004BCC5F /* SceneDelegate.swift */; };
 		05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3C228EB5BDC004BCC5F /* ViewController.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		058CA24628ECC72800591E1C /* SelectGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGameViewController.swift; sourceTree = "<group>"; };
+		058CA24828ECEA1300591E1C /* StartGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameViewController.swift; sourceTree = "<group>"; };
+		058CA24A28ECF6F400591E1C /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		05BFF3BB28EB5BDB004BCC5F /* PartyArcade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyArcade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BFF3C028EB5BDC004BCC5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +82,9 @@
 				05BFF3D728EB5D48004BCC5F /* LoginViewController.swift */,
 				05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */,
 				05BFF3CC28EB5BDC004BCC5F /* Info.plist */,
+				058CA24628ECC72800591E1C /* SelectGameViewController.swift */,
+				058CA24828ECEA1300591E1C /* StartGameViewController.swift */,
+				058CA24A28ECF6F400591E1C /* ResultViewController.swift */,
 			);
 			path = PartyArcade;
 			sourceTree = "<group>";
@@ -159,10 +168,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058CA24928ECEA1300591E1C /* StartGameViewController.swift in Sources */,
 				05BFF3D828EB5D48004BCC5F /* LoginViewController.swift in Sources */,
 				05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */,
+				058CA24B28ECF6F400591E1C /* ResultViewController.swift in Sources */,
 				05BFF3C328EB5BDC004BCC5F /* ViewController.swift in Sources */,
 				05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */,
+				058CA24728ECC72800591E1C /* SelectGameViewController.swift in Sources */,
 				05BFF3C128EB5BDC004BCC5F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
