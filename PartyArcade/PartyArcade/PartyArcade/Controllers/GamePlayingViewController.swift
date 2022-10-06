@@ -37,31 +37,6 @@ class GamePlayingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let imageRef = storageRef.child("hugh.jpg")
-        
-        imageRef.downloadURL { url, error in
-            if let error = error {
-                print("😎")
-                print(error)
-                return
-            }
-            
-            guard let url = url else {
-                print("🥶")
-                return
-            }
-
-            DispatchQueue.global().async {
-                guard let data = try? Data(contentsOf: url) else {
-                    print("😱")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.questionImageView.image = UIImage(data: data)
-                }
-            }
-        }
 
         myConnectionsRef
             .child("rooms")
@@ -70,14 +45,15 @@ class GamePlayingViewController: UIViewController {
             .getData { error, dataSnapshot in
                 self.currentQuestions = try? FirebaseDataDecoder().decode(GameQuestions.self, from: dataSnapshot?.value).questions
                 
-//                CurrentUserInfo.currentQuestions = gameQuestions!.questions
-                
+                guard let currentQuestions = self.currentQuestions else {
+                    return
+                }
+                self.setUpImageView(name: currentQuestions[0].data)
                 self.startTimer(count: 10) {
                     self.showAlert(message: "틀림") {
                         self.showNextQuestion()
                     }
                 }
-                
                 
                 guard let currentQuestions = self.currentQuestions else { return }
                 self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
@@ -105,12 +81,41 @@ class GamePlayingViewController: UIViewController {
         }
     }
     
+    private func setUpImageView(name: String) {
+        let imageRef = storageRef.child("\(name).png")
+        
+        imageRef.downloadURL { url, error in
+            if let error = error {
+                print("😎")
+                print(error)
+                return
+            }
+            
+            guard let url = url else {
+                print("🥶")
+                return
+            }
+
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url) else {
+                    print("😱")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.questionImageView.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
     private func showAlert(message: String, completion: @escaping (() -> Void)) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        present(alert, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dismiss(animated: true) {
-                completion()
+        if UIApplication.topViewController() is GamePlayingViewController {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            present(alert, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.dismiss(animated: true) {
+                    completion()
+                }
             }
         }
     }
@@ -140,6 +145,7 @@ class GamePlayingViewController: UIViewController {
     private func showNextQuestion() {
         self.stopTimer(setTimerLabel: 10)
         guard let currentQuestions = self.currentQuestions else { return }
+        self.setUpImageView(name: currentQuestions[currentIndex+1].data)
         if self.currentIndex >= currentQuestions.count - 1 {
             self.moveResultVC()
             return
