@@ -43,19 +43,20 @@ class GamePlayingViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         present(alert, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dismiss(animated: true)
-            self.currentIndex += 1
-            self.answerInputTextField.text = ""
-            
-            guard let currentQuestions = self.currentQuestions else { return }
-            
-            if self.currentIndex == currentQuestions.count {
-                self.moveResultVC()
-                return
+            self.dismiss(animated: true) {
+                self.currentIndex += 1
+                self.answerInputTextField.text = ""
+                
+                guard let currentQuestions = self.currentQuestions else { return }
+                
+                self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
+                self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
+                
+                if self.currentIndex == currentQuestions.count {
+                    self.moveResultVC()
+                    return
+                }
             }
-            
-            self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-            self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
         }
     }
     

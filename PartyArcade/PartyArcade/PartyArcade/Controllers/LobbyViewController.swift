@@ -50,42 +50,46 @@ class LobbyViewController: UIViewController {
                 print("### 리스트 업데이트 ###")
                 
                 guard dataSnapshot.exists() else {
-                    print("호스트가 나가서 방이 사라짐.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    self.showAlert(message: "방이 사라졌어요") {
+                        self.view.window?.rootViewController?.dismiss(animated: true)
+                    }
                     return
                 }
-                
-                guard let asd = try? JSONSerialization.data(withJSONObject: dataSnapshot.value) else {
-                    print("error")
-                    return
-                }
-                let zxc = try? JSONDecoder().decode(Room.self, from: asd)
-                
-                if zxc!.isPlaying {
+                                
+                guard let room = try? FirebaseDataDecoder().decode(Room.self, from: dataSnapshot.value) else { return }
+                if room.isPlaying {
                     self.performSegue(withIdentifier: "moveToGamePlaying", sender: nil)
                 }
                 
-                let mapped = zxc?.userList.map {
+                let mapped = room.userList.map {
                     $0.value
                 }
-                let optionalSorted = mapped?.sorted { $0.loginTime < $1.loginTime }
-                
-                guard let sorted = optionalSorted else { return }
+                let sorted = mapped.sorted { $0.loginTime < $1.loginTime }
                 
                 self.playerCount = sorted.count
                 self.playerList = sorted
                 let me = self.playerList.filter { $0.uuid == CurrentUserInfo.userInfo?.uuid }
                 
                 guard me.isEmpty == false else {
-                    print("강퇴 당함.")
-                    self.view.window?.rootViewController?.dismiss(animated: true)
+                    self.showAlert(message: "강퇴 당했어요 🤗") {
+                        self.view.window?.rootViewController?.dismiss(animated: true)
+                    }
                     return
                 }
                 
+                // 내가 방장인지 확인
                 CurrentUserInfo.isHost = me.first?.isHost
                 if CurrentUserInfo.isHost == true {
+                    self.myConnectionsRef
+                        .child("rooms")
+                        .child(CurrentUserInfo.currentRoom!.uuidString)
+                        .onDisconnectRemoveValue()
                     self.startGameButton.isEnabled = true
                 } else {
+                    self.myConnectionsRef
+                        .child("rooms")
+                        .child(CurrentUserInfo.currentRoom!.uuidString)
+                        .cancelDisconnectOperations()
                     self.startGameButton.isEnabled = false
                 }
                 
@@ -100,7 +104,7 @@ class LobbyViewController: UIViewController {
     
     // MARK: - Button Actions
     
-    @IBAction func changeNicknameButtonTapped(_ sender: UIButton) {
+    @IBAction func exitButtonTapped(_ sender: UIButton) {
         guard let isHost = CurrentUserInfo.isHost,
               let currentRoom = CurrentUserInfo.currentRoom,
               let currentUserUUID = CurrentUserInfo.userInfo?.uuid else { return }
@@ -118,7 +122,7 @@ class LobbyViewController: UIViewController {
                 .removeValue()
         }
         
-        dismiss(animated: true)
+        self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
     
@@ -136,6 +140,18 @@ class LobbyViewController: UIViewController {
         guard let inviteCode = inviteCodeTextView.text else { return }
         let activityVC = UIActivityViewController(activityItems: [inviteCode], applicationActivities: nil)
         present(activityVC, animated: true)
+    }
+    
+    // MARK: - Methods
+    
+    private func showAlert(message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(alert, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dismiss(animated: true) {
+                completion?()
+            }
+        }
     }
 }
 

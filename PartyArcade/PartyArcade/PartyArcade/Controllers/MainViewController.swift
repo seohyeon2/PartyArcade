@@ -59,22 +59,22 @@ class MainViewController: UIViewController {
             .child(inviteCode.uuidString)
             .child("game")
             .setValue(game.rawValue)
-        myConnectionsRef
-            .child("rooms")
-            .child(inviteCode.uuidString)
-            .child("game")
-            .onDisconnectRemoveValue()
+//        myConnectionsRef
+//            .child("rooms")
+//            .child(inviteCode.uuidString)
+//            .child("game")
+//            .onDisconnectRemoveValue()
         
         myConnectionsRef
             .child("rooms")
             .child(inviteCode.uuidString)
             .child("isPlaying")
             .setValue(false)
-        myConnectionsRef
-            .child("rooms")
-            .child(inviteCode.uuidString)
-            .child("isPlaying")
-            .onDisconnectRemoveValue()
+//        myConnectionsRef
+//            .child("rooms")
+//            .child(inviteCode.uuidString)
+//            .child("isPlaying")
+//            .onDisconnectRemoveValue()
                 
         myConnectionsRef
             .child("rooms")

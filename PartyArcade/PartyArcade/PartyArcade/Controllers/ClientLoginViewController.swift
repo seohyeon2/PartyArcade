@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseSharedSwift
 
 class ClientLoginViewController: UIViewController {
 
@@ -71,15 +72,48 @@ class ClientLoginViewController: UIViewController {
         myConnectionsRef
             .child("rooms")
             .child(inviteCode)
-            .child("userList")
-            .child(currentUserInfo.uuid.uuidString)
-            .setValue(jsonData)
-        myConnectionsRef
-            .child("rooms")
-            .child(inviteCode)
-            .child("userList")
-            .child(currentUserInfo.uuid.uuidString)
-            .onDisconnectRemoveValue()
+            .getData { error, dataSnapshot in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                
+                guard let dataSnapshotExists = dataSnapshot?.exists(),
+                      dataSnapshotExists else {
+                    self.showAlert(message: "방이 없어졌어요")
+                    return
+                }
+                
+                guard let room = try? FirebaseDataDecoder().decode(Room.self, from: dataSnapshot?.value) else { return }
+                
+                guard room.isPlaying == false else {
+                    self.showAlert(message: "게임이 이미 진행중이에요")
+                    return
+                }
+                
+                guard let game = Game(rawValue: room.game.rawValue) else { return }
+                CurrentUserInfo.currentGame = game
+                CurrentUserInfo.currentRoom = UUID(uuidString: inviteCode)
+                
+                self.myConnectionsRef
+                    .child("rooms")
+                    .child(inviteCode)
+                    .child("userList")
+                    .child(currentUserInfo.uuid.uuidString)
+                    .setValue(jsonData) { error, databaseReference in
+                        print(error)
+                        print(databaseReference)
+                        self.performSegue(withIdentifier: "moveClientToLobby", sender: nil)
+                    }
+                self.myConnectionsRef
+                    .child("rooms")
+                    .child(inviteCode)
+                    .child("userList")
+                    .child(currentUserInfo.uuid.uuidString)
+                    .onDisconnectRemoveValue()
+            }
+        
+        
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -103,6 +137,18 @@ class ClientLoginViewController: UIViewController {
     
     @objc func keyboardDown() {
         self.view.transform = .identity
+    }
+    
+    // MARK: - Methods
+    
+    private func showAlert(message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(alert, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dismiss(animated: true) {
+                completion?()
+            }
+        }
     }
 }
 

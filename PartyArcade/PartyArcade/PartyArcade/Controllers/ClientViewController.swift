@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseSharedSwift
 
 class ClientViewController: UIViewController {
 
@@ -60,16 +61,20 @@ class ClientViewController: UIViewController {
                 
                 guard let dataSnapshotExists = dataSnapshot?.exists(),
                       dataSnapshotExists else {
-                    print("방이 없음")
+                    self.showAlert(message: "방이 없어요")
                     return
                 }
                 
                 print("방 찾음")
                 
-                guard let asd = try? JSONSerialization.data(withJSONObject: dataSnapshot?.value),
-                      let zxc = try? JSONDecoder().decode(Room.self, from: asd) else { return }
+                guard let room = try? FirebaseDataDecoder().decode(Room.self, from: dataSnapshot?.value) else { return }
+
+                guard room.isPlaying == false else {
+                    self.showAlert(message: "게임이 이미 진행중이에요")
+                    return
+                }
                 
-                guard let game = Game(rawValue: zxc.game.rawValue) else { return }
+                guard let game = Game(rawValue: room.game.rawValue) else { return }
                 CurrentUserInfo.currentGame = game
                 CurrentUserInfo.currentRoom = UUID(uuidString: inputedCode)
                 
@@ -101,6 +106,18 @@ class ClientViewController: UIViewController {
         self.view.transform = .identity
     }
 
+    // MARK: - Methods
+    
+    private func showAlert(message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(alert, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dismiss(animated: true) {
+                completion?()
+            }
+        }
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate
