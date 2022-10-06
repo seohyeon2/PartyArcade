@@ -126,10 +126,8 @@ class LobbyViewController: UIViewController {
         myConnectionsRef
             .child("rooms")
             .child(CurrentUserInfo.currentRoom!.uuidString)
-            .updateChildValues([
-                "game": CurrentUserInfo.currentGame!.rawValue,
-                "isPlaying": true
-            ])
+            .child("isPlaying")
+            .setValue(true)
     }
     
 

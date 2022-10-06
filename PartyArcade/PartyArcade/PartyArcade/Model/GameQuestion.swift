@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct GameQuestion: Decodable {
+struct GameQuestion: Codable {
     let answer, data: String
 }

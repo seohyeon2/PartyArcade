@@ -12,6 +12,6 @@ final class CurrentUserInfo {
     static var isHost: Bool? = nil
     static var currentGame: Game?
     static var currentRoom: UUID? = nil
-    static var currentQuestions: [GameQuestion] = [GameQuestion]()
+//    static var currentQuestions: [GameQuestion] = [GameQuestion]()
     private init() { }
 }

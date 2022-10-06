@@ -12,3 +12,7 @@ struct Room: Codable {
     let isPlaying: Bool
     let userList: [String: UserInfo]
 }
+
+struct GameQuestions: Codable {
+    let questions: [GameQuestion]
+}

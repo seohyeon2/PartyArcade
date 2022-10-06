@@ -57,13 +57,23 @@ class MainViewController: UIViewController {
         myConnectionsRef
             .child("rooms")
             .child(inviteCode.uuidString)
-            .setValue([
-                "game": game.rawValue,
-                "isPlaying": false
-            ])
+            .child("game")
+            .setValue(game.rawValue)
         myConnectionsRef
             .child("rooms")
             .child(inviteCode.uuidString)
+            .child("game")
+            .onDisconnectRemoveValue()
+        
+        myConnectionsRef
+            .child("rooms")
+            .child(inviteCode.uuidString)
+            .child("isPlaying")
+            .setValue(false)
+        myConnectionsRef
+            .child("rooms")
+            .child(inviteCode.uuidString)
+            .child("isPlaying")
             .onDisconnectRemoveValue()
                 
         myConnectionsRef
@@ -82,6 +92,7 @@ class MainViewController: UIViewController {
         
         
         let randomNumbers = getRandomNumber(number: 5, total: 20)
+        var currentQuestions: [GameQuestion] = []
         
         randomNumbers.forEach { number in
             myConnectionsRef
@@ -99,19 +110,20 @@ class MainViewController: UIViewController {
                     print("decode fail")
                     return
                 }
-                
-                CurrentUserInfo.currentQuestions.append(data)
-                self.myConnectionsRef
-                    .child("rooms")
-                    .child(CurrentUserInfo.currentRoom!.uuidString)
-                    .child("\(currentUserInfo.name)_\(game.koreanString)")
-                    .child("\(CurrentUserInfo.currentQuestions.count - 1)")
-                    .setValue([
-                        "data": "\(data.data)",
-                        "answer": "\(data.answer)",
-                        "playerAnswer": ""
-                    ])
-            }
+                    
+//                    CurrentUserInfo.currentQuestions.append(data)
+                    currentQuestions.append(data)
+                    self.myConnectionsRef
+                        .child("rooms")
+                        .child(CurrentUserInfo.currentRoom!.uuidString)
+                        .child("questions")
+                        .child("\(currentQuestions.count - 1)")
+                        .setValue([
+                            "data": "\(data.data)",
+                            "answer": "\(data.answer)",
+                            "playerAnswer": ""
+                        ])
+                }
             
         }
         

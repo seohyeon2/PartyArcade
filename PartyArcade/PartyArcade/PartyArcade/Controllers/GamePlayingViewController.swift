@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseSharedSwift
 
 class GamePlayingViewController: UIViewController {
 
+    let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+    
     @IBOutlet weak var currentQuestionLabel: UILabel!
     @IBOutlet weak var remainQuestionLabel: UILabel!
     @IBOutlet weak var questionImageView: UIImageView!
@@ -17,15 +22,17 @@ class GamePlayingViewController: UIViewController {
     
     private var currentIndex = 0
     private var answerCount = 0
+    private var currentQuestions: [GameQuestion]?
     
     @IBOutlet weak var mainStackViewBottomConstraint: NSLayoutConstraint!
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
-        if currentIndex == CurrentUserInfo.currentQuestions.count {
+        guard let currentQuestions = currentQuestions else { return }
+        if currentIndex == currentQuestions.count {
             return
         }
         var message = "틀림😑"
-        if answerInputTextField.text == CurrentUserInfo.currentQuestions[currentIndex].answer {
+        if answerInputTextField.text == currentQuestions[currentIndex].answer {
             answerCount += 1
             message = "정답🥳"
         }
@@ -40,13 +47,15 @@ class GamePlayingViewController: UIViewController {
             self.currentIndex += 1
             self.answerInputTextField.text = ""
             
-            if self.currentIndex == CurrentUserInfo.currentQuestions.count {
+            guard let currentQuestions = self.currentQuestions else { return }
+            
+            if self.currentIndex == currentQuestions.count {
                 self.moveResultVC()
                 return
             }
             
             self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-            self.remainQuestionLabel.text = "총 문제: \(CurrentUserInfo.currentQuestions.count)"
+            self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
         }
     }
     
@@ -57,8 +66,19 @@ class GamePlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-        self.remainQuestionLabel.text = "총 문제: \(CurrentUserInfo.currentQuestions.count)"
+        myConnectionsRef
+            .child("rooms")
+            .child(CurrentUserInfo.currentRoom!.uuidString)
+            .child("userList")
+            .getData { error, dataSnapshot in
+                self.currentQuestions = try? FirebaseDataDecoder().decode(GameQuestions.self, from: dataSnapshot?.value).questions
+                
+//                CurrentUserInfo.currentQuestions = gameQuestions!.questions
+                guard let currentQuestions = self.currentQuestions else { return }
+                self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
+                self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
+            }
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveDown), name: UIResponder.keyboardWillHideNotification, object: nil)
