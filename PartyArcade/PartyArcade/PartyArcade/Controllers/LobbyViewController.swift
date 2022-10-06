@@ -71,9 +71,7 @@ class LobbyViewController: UIViewController {
                 let me = self.playerList.filter { $0.uuid == CurrentUserInfo.userInfo?.uuid }
                 
                 guard me.isEmpty == false else {
-                    self.showAlert(message: "강퇴 당했어요 🤗") {
-                        self.view.window?.rootViewController?.dismiss(animated: true)
-                    }
+                    self.view.window?.rootViewController?.dismiss(animated: true)
                     return
                 }
                 
