@@ -36,10 +36,18 @@ class GamePlayingViewController: UIViewController {
             answerCount += 1
             message = "정답🥳"
         }
-        showAlert(message: message)
+        showAlert(message: message) {
+            
+            print("\(CurrentUserInfo.currentGame!.string)_\(currentQuestions[self.currentIndex].answer)")
+            guard let image = UIImage(named: "\(CurrentUserInfo.currentGame!.string)_\(currentQuestions[self.currentIndex].answer)") else {
+                self.questionImageView.image = UIImage(named: "yagom")
+                return
+            }
+            self.questionImageView.image = image
+        }
     }
     
-    private func showAlert(message: String) {
+    private func showAlert(message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         present(alert, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -49,13 +57,16 @@ class GamePlayingViewController: UIViewController {
                 
                 guard let currentQuestions = self.currentQuestions else { return }
                 
-                self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-                self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
                 
                 if self.currentIndex == currentQuestions.count {
                     self.moveResultVC()
                     return
                 }
+                
+                self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
+                self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
+                
+                completion?()
             }
         }
     }
@@ -85,6 +96,13 @@ class GamePlayingViewController: UIViewController {
                 guard let currentQuestions = self.currentQuestions else { return }
                 self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
                 self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
+                
+                print("\(CurrentUserInfo.currentGame!.string)_\(currentQuestions[self.currentIndex].answer)")
+                guard let image = UIImage(named: "\(CurrentUserInfo.currentGame!.string)_\(currentQuestions[self.currentIndex].answer)") else {
+                    self.questionImageView.image = UIImage(named: "yagom")
+                    return
+                }
+                self.questionImageView.image = image
             }
         
         
@@ -99,7 +117,6 @@ class GamePlayingViewController: UIViewController {
                 self.mainStackViewBottomConstraint.constant = keyboardSize.height + 10
                 self.view.layoutIfNeeded()
             })
-            
         }
     }
     

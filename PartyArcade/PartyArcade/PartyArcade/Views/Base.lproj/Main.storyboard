@@ -452,7 +452,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wiy-gW-n0d">
                                 <rect key="frame" x="62" y="185.5" width="290" height="525"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagom" translatesAutoresizingMaskIntoConstraints="NO" id="bdx-MD-y2F">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="client" translatesAutoresizingMaskIntoConstraints="NO" id="bdx-MD-y2F">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="289.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bdx-MD-y2F" secondAttribute="height" multiplier="1:1" id="2H3-Ly-zdE"/>
@@ -706,7 +706,6 @@
         <segue reference="5hs-gQ-ZAz"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Yagom" width="1176" height="964"/>
         <image name="client" width="1176" height="1110"/>
         <image name="host" width="1176" height="1110"/>
         <systemColor name="labelColor">
