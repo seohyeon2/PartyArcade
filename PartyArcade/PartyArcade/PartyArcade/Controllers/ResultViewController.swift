@@ -56,17 +56,21 @@ class ResultViewController: UIViewController {
             myConnectionsRef
                 .child("rooms")
                 .child(currentRoom.uuidString)
-                .removeValue()
+                .removeValue() { _, _ in
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
         } else {
             myConnectionsRef
                 .child("rooms")
                 .child(currentRoom.uuidString)
                 .child("userList")
                 .child(currentUserUUID.uuidString)
-                .removeValue()
+                .removeValue() { _, _ in
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
         }
         
-        self.view.window?.rootViewController?.dismiss(animated: true)
+        
     }
 }
 
@@ -77,8 +81,11 @@ extension ResultViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row). \(list[indexPath.row].key)"
-        cell.detailTextLabel?.text = list[indexPath.row].value.description
+        
+        cell.textLabel?.font = .preferredFont(forTextStyle: .title3)
+        cell.textLabel?.text = "\(indexPath.row)등 : \(list[indexPath.row].key)"
+        cell.detailTextLabel?.font = .preferredFont(forTextStyle: .body)
+        cell.detailTextLabel?.text = "맞춘 개수 : \(list[indexPath.row].value)"
         
         return cell
     }

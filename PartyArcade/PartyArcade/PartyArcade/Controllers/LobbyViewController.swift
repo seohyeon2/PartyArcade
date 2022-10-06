@@ -109,20 +109,32 @@ class LobbyViewController: UIViewController {
               let currentRoom = CurrentUserInfo.currentRoom,
               let currentUserUUID = CurrentUserInfo.userInfo?.uuid else { return }
         if isHost {
-            myConnectionsRef
-                .child("rooms")
-                .child(currentRoom.uuidString)
-                .removeValue()
+            let alertController = UIAlertController(title: "님은 방장이에요", message: "방장이 나가면 방이 사라질 수 있어요.\n정말 나가시겠어요? 🤔", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "네", style: .destructive) { _ in
+                self.myConnectionsRef
+                    .child("rooms")
+                    .child(currentRoom.uuidString)
+                    .removeValue() { _, _ in
+                        self.view.window?.rootViewController?.dismiss(animated: true)
+                    }
+            }
+            let no = UIAlertAction(title: "아니요", style: .cancel)
+            alertController.addAction(yes)
+            alertController.addAction(no)
+            
+            present(alertController, animated: true)
+            
         } else {
             myConnectionsRef
                 .child("rooms")
                 .child(currentRoom.uuidString)
                 .child("userList")
                 .child(currentUserUUID.uuidString)
-                .removeValue()
+                .removeValue() { _, _ in
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
         }
         
-        self.view.window?.rootViewController?.dismiss(animated: true)
     }
     
     
