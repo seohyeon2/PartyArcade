@@ -30,7 +30,7 @@ class GamePlayingViewController: UIViewController {
     
     @IBOutlet weak var mainStackViewBottomConstraint: NSLayoutConstraint!
     
-    private var timer: Timer?
+    var timer: Timer?
     private var timerCount = 10
     
     // MARK: - Life Cycle
@@ -117,27 +117,28 @@ class GamePlayingViewController: UIViewController {
     
     private func startTimer(count: Int, completion: @escaping (() -> Void)) {
         var timerCount = count
-        print(timerCount)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             
-            if timerCount >= 0 {
-                self.timerLabel.text = "⏰ \(timerCount)"
+            if timerCount > 0 {
+                print(timerCount)
                 timerCount -= 1
+                self.timerLabel.text = "⏰ \(timerCount)"
             } else {
-                self.stopTimer()
+                self.stopTimer(setTimerLabel: 10)
                 completion()
             }
         })
     }
     
-    private func stopTimer() {
+    private func stopTimer(setTimerLabel: Int) {
+        self.timerLabel.text = "⏰ \(setTimerLabel)"
         self.timer?.invalidate()
         self.timer = nil
     }
     
     private func showNextQuestion() {
-        self.stopTimer()
+        self.stopTimer(setTimerLabel: 10)
         guard let currentQuestions = self.currentQuestions else { return }
         if self.currentIndex >= currentQuestions.count - 1 {
             self.moveResultVC()
