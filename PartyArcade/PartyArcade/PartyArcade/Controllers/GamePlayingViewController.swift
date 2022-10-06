@@ -42,7 +42,7 @@ class GamePlayingViewController: UIViewController {
     private func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         present(alert, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.dismiss(animated: true)
             self.currentIndex += 1
             self.answerInputTextField.text = ""
@@ -60,7 +60,14 @@ class GamePlayingViewController: UIViewController {
     }
     
     private func moveResultVC() {
-        print("👍🏻 맞춘 문제 개수 : \(answerCount) ")
+        myConnectionsRef
+            .child("rooms")
+            .child(CurrentUserInfo.currentRoom!.uuidString)
+            .child("answerList")
+            .child(CurrentUserInfo.userInfo?.uuid.uuidString ?? "")
+            .setValue([CurrentUserInfo.userInfo?.name: answerCount])
+        
+        performSegue(withIdentifier: "moveToResult", sender: nil)
     }
 
     override func viewDidLoad() {

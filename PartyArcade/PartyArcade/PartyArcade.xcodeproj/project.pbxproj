@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050C798728EEB3B200CB8484 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C798628EEB3B200CB8484 /* ResultViewController.swift */; };
 		059630A628EDAAD400D8B172 /* GamePlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */; };
 		059630A828EDADEB00D8B172 /* GameQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059630A728EDADEB00D8B172 /* GameQuestion.swift */; };
 		05BFF3BF28EB5BDB004BCC5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3BE28EB5BDB004BCC5F /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050C798628EEB3B200CB8484 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayingViewController.swift; sourceTree = "<group>"; };
 		059630A728EDADEB00D8B172 /* GameQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestion.swift; sourceTree = "<group>"; };
 		05BFF3BB28EB5BDB004BCC5F /* PartyArcade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyArcade.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,7 @@
 				B419ECDE28EC37D40001E3DE /* ClientViewController.swift */,
 				B419ECE028EC3A6B0001E3DE /* ClientLoginViewController.swift */,
 				059630A528EDAAD400D8B172 /* GamePlayingViewController.swift */,
+				050C798628EEB3B200CB8484 /* ResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				B419ECD928EC28910001E3DE /* UserInfo.swift in Sources */,
 				B419ECDD28EC2CE30001E3DE /* MainViewController.swift in Sources */,
 				B419ECDB28EC2A2E0001E3DE /* CurrentUserInfo.swift in Sources */,
+				050C798728EEB3B200CB8484 /* ResultViewController.swift in Sources */,
 				05BFF3C128EB5BDC004BCC5F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
