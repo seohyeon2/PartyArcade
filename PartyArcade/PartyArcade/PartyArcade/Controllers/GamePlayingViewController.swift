@@ -12,6 +12,8 @@ import FirebaseStorage
 
 class GamePlayingViewController: UIViewController {
 
+    // MARK: - Properties
+    
     let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     let storageRef = Storage.storage(url:"gs://partyarcade-c914b.appspot.com").reference()
 
@@ -28,51 +30,11 @@ class GamePlayingViewController: UIViewController {
     
     @IBOutlet weak var mainStackViewBottomConstraint: NSLayoutConstraint!
     
-    @IBAction func submitButtonTapped(_ sender: UIButton) {
-        guard let currentQuestions = currentQuestions else { return }
-        if currentIndex == currentQuestions.count {
-            return
-        }
-        var message = "틀림😑"
-        if answerInputTextField.text == currentQuestions[currentIndex].answer {
-            answerCount += 1
-            message = "정답🥳"
-        }
-        showAlert(message: message)
-    }
+    private var timer: Timer?
+    private var timerCount = 10
     
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        present(alert, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dismiss(animated: true) {
-                self.currentIndex += 1
-                self.answerInputTextField.text = ""
-                
-                guard let currentQuestions = self.currentQuestions else { return }
-                
-                self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
-                self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
-                
-                if self.currentIndex == currentQuestions.count {
-                    self.moveResultVC()
-                    return
-                }
-            }
-        }
-    }
+    // MARK: - Life Cycle
     
-    private func moveResultVC() {
-        myConnectionsRef
-            .child("rooms")
-            .child(CurrentUserInfo.currentRoom!.uuidString)
-            .child("answerList")
-            .child(CurrentUserInfo.userInfo?.uuid.uuidString ?? "")
-            .setValue([CurrentUserInfo.userInfo?.name: answerCount])
-        
-        performSegue(withIdentifier: "moveToResult", sender: nil)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,6 +71,14 @@ class GamePlayingViewController: UIViewController {
                 self.currentQuestions = try? FirebaseDataDecoder().decode(GameQuestions.self, from: dataSnapshot?.value).questions
                 
 //                CurrentUserInfo.currentQuestions = gameQuestions!.questions
+                
+                self.startTimer(count: 10) {
+                    self.showAlert(message: "틀림") {
+                        self.showNextQuestion()
+                    }
+                }
+                
+                
                 guard let currentQuestions = self.currentQuestions else { return }
                 self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
                 self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
@@ -118,6 +88,87 @@ class GamePlayingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textViewMoveDown), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
+        guard let currentQuestions = currentQuestions else { return }
+        if currentIndex >= currentQuestions.count - 1 {
+            self.moveResultVC()
+            return
+        }
+        var message = "틀림😑"
+        if answerInputTextField.text == currentQuestions[currentIndex].answer {
+            answerCount += 1
+            message = "정답🥳"
+        }
+        self.showAlert(message: message) {
+            self.showNextQuestion()
+        }
+    }
+    
+    private func showAlert(message: String, completion: @escaping (() -> Void)) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(alert, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dismiss(animated: true) {
+                completion()
+            }
+        }
+    }
+    
+    private func startTimer(count: Int, completion: @escaping (() -> Void)) {
+        var timerCount = count
+        print(timerCount)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            
+            if timerCount >= 0 {
+                self.timerLabel.text = "⏰ \(timerCount)"
+                timerCount -= 1
+            } else {
+                self.stopTimer()
+                completion()
+            }
+        })
+    }
+    
+    private func stopTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    private func showNextQuestion() {
+        self.stopTimer()
+        guard let currentQuestions = self.currentQuestions else { return }
+        if self.currentIndex >= currentQuestions.count - 1 {
+            self.moveResultVC()
+            return
+        }
+        
+        self.currentIndex += 1
+        self.answerInputTextField.text = ""
+        
+        self.startTimer(count: 10) {
+            self.showAlert(message: "틀림") {
+                self.showNextQuestion()
+            }
+        }
+        
+        self.currentQuestionLabel.text = "\(self.currentIndex + 1)번 문제"
+        self.remainQuestionLabel.text = "총 문제: \(currentQuestions.count)"
+    }
+    
+    private func moveResultVC() {
+        myConnectionsRef
+            .child("rooms")
+            .child(CurrentUserInfo.currentRoom!.uuidString)
+            .child("answerList")
+            .child(CurrentUserInfo.userInfo?.uuid.uuidString ?? "")
+            .setValue([CurrentUserInfo.userInfo?.name: answerCount])
+        
+        performSegue(withIdentifier: "moveToResult", sender: nil)
+    }
+
+    
     
     @objc func textViewMoveUp(_ notification: NSNotification){
         
