@@ -31,7 +31,7 @@ class GamePlayingViewController: UIViewController {
     @IBOutlet weak var mainStackViewBottomConstraint: NSLayoutConstraint!
     
     var timer: Timer?
-    private var timerCount = 10
+    private var timerCount = 20
     
     // MARK: - Life Cycle
     
@@ -49,7 +49,7 @@ class GamePlayingViewController: UIViewController {
                     return
                 }
                 self.setUpImageView(name: currentQuestions[0].data)
-                self.startTimer(count: 10) {
+                self.startTimer(count: 20) {
                     self.showAlert(message: "틀림") {
                         self.showNextQuestion()
                     }
@@ -130,7 +130,7 @@ class GamePlayingViewController: UIViewController {
                 timerCount -= 1
                 self.timerLabel.text = "⏰ \(timerCount)"
             } else {
-                self.stopTimer(setTimerLabel: 10)
+                self.stopTimer(setTimerLabel: 20)
                 completion()
             }
         })
@@ -143,7 +143,7 @@ class GamePlayingViewController: UIViewController {
     }
     
     private func showNextQuestion() {
-        self.stopTimer(setTimerLabel: 10)
+        self.stopTimer(setTimerLabel: 20)
         guard let currentQuestions = self.currentQuestions else { return }
         self.setUpImageView(name: currentQuestions[currentIndex+1].data)
         if self.currentIndex >= currentQuestions.count - 1 {
@@ -154,7 +154,7 @@ class GamePlayingViewController: UIViewController {
         self.currentIndex += 1
         self.answerInputTextField.text = ""
         
-        self.startTimer(count: 10) {
+        self.startTimer(count: 20) {
             self.showAlert(message: "틀림") {
                 self.showNextQuestion()
             }
