@@ -67,15 +67,19 @@ class GamePlayingViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         guard let currentQuestions = currentQuestions else { return }
-        if currentIndex >= currentQuestions.count - 1 {
-            self.moveResultVC()
-            return
-        }
         var message = "틀림😑"
         if answerInputTextField.text == currentQuestions[currentIndex].answer {
             answerCount += 1
             message = "정답🥳"
         }
+        
+        if currentIndex >= currentQuestions.count - 1 {
+            showAlert(message: message) {
+                self.moveResultVC()
+            }
+            return
+        }
+        
         self.showAlert(message: message) {
             self.showNextQuestion()
         }
@@ -145,13 +149,14 @@ class GamePlayingViewController: UIViewController {
     private func showNextQuestion() {
         self.stopTimer(setTimerLabel: 20)
         guard let currentQuestions = self.currentQuestions else { return }
-        self.setUpImageView(name: currentQuestions[currentIndex+1].data)
-        if self.currentIndex >= currentQuestions.count - 1 {
+        
+        if self.currentIndex > currentQuestions.count - 1 {
             self.moveResultVC()
             return
         }
         
         self.currentIndex += 1
+        self.setUpImageView(name: currentQuestions[currentIndex].data)
         self.answerInputTextField.text = ""
         
         self.startTimer(count: 20) {

@@ -16,6 +16,7 @@ struct UserResult {
 
 class ResultViewController: UIViewController {
     var list = [Dictionary<String, Int>.Element]()
+    var rank = 1
     
     let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
 
@@ -88,6 +89,16 @@ extension ResultViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
+        
+        var isEqual = false
+        
+        if indexPath.row < list.count {
+            isEqual = list[indexPath.row].value == list[indexPath.row].value ? true : false
+        }
+        
+        if !isEqual {
+            rank += 1
+        }
         
         cell.textLabel?.font = .preferredFont(forTextStyle: .title3)
         cell.textLabel?.text = "\(indexPath.row)등 : \(list[indexPath.row].key)"
