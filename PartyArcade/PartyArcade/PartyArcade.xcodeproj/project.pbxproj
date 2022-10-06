@@ -21,6 +21,7 @@
 		05BFF3D828EB5D48004BCC5F /* HostLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3D728EB5D48004BCC5F /* HostLoginViewController.swift */; };
 		05BFF3DA28EB5D4D004BCC5F /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFF3D928EB5D4D004BCC5F /* LobbyViewController.swift */; };
 		05BFF3DC28EB5D51004BCC5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05BFF3DB28EB5D51004BCC5F /* GoogleService-Info.plist */; };
+		05D4E1BF28EEF2CA00BAFF16 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 05D4E1BE28EEF2CA00BAFF16 /* FirebaseStorage */; };
 		B419ECD428EC25600001E3DE /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECD328EC25600001E3DE /* RoomViewController.swift */; };
 		B419ECD928EC28910001E3DE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECD828EC28910001E3DE /* UserInfo.swift */; };
 		B419ECDB28EC2A2E0001E3DE /* CurrentUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419ECDA28EC2A2E0001E3DE /* CurrentUserInfo.swift */; };
@@ -61,6 +62,7 @@
 			files = (
 				05BFF3D628EB5CF8004BCC5F /* FirebaseDatabaseSwift in Frameworks */,
 				05BFF3D428EB5CF8004BCC5F /* FirebaseDatabase in Frameworks */,
+				05D4E1BF28EEF2CA00BAFF16 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +155,7 @@
 			packageProductDependencies = (
 				05BFF3D328EB5CF8004BCC5F /* FirebaseDatabase */,
 				05BFF3D528EB5CF8004BCC5F /* FirebaseDatabaseSwift */,
+				05D4E1BE28EEF2CA00BAFF16 /* FirebaseStorage */,
 			);
 			productName = PartyArcade;
 			productReference = 05BFF3BB28EB5BDB004BCC5F /* PartyArcade.app */;
@@ -184,6 +187,7 @@
 			mainGroup = 05BFF3B228EB5BDB004BCC5F;
 			packageReferences = (
 				05BFF3D228EB5CF8004BCC5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				05D4E1BD28EEF2CA00BAFF16 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 05BFF3BC28EB5BDB004BCC5F /* Products */;
 			projectDirPath = "";
@@ -457,6 +461,14 @@
 				minimumVersion = 9.6.0;
 			};
 		};
+		05D4E1BD28EEF2CA00BAFF16 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 9.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -469,6 +481,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05BFF3D228EB5CF8004BCC5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabaseSwift;
+		};
+		05D4E1BE28EEF2CA00BAFF16 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05BFF3D228EB5CF8004BCC5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,10 +8,12 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseSharedSwift
+import FirebaseStorage
 
 class GamePlayingViewController: UIViewController {
 
     let myConnectionsRef = Database.database(url: "https://partyarcade-c914b-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+    let storageRef = Storage.storage(url:"gs://partyarcade-c914b.appspot.com").reference()
 
     
     @IBOutlet weak var currentQuestionLabel: UILabel!
@@ -74,6 +76,31 @@ class GamePlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let imageRef = storageRef.child("hugh.jpg")
+        
+        imageRef.downloadURL { url, error in
+            if let error = error {
+                print("😎")
+                print(error)
+                return
+            }
+            
+            guard let url = url else {
+                print("🥶")
+                return
+            }
+
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url) else {
+                    print("😱")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.questionImageView.image = UIImage(data: data)
+                }
+            }
+        }
+
         myConnectionsRef
             .child("rooms")
             .child(CurrentUserInfo.currentRoom!.uuidString)
