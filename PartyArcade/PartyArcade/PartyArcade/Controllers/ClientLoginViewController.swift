@@ -129,7 +129,8 @@ class ClientLoginViewController: UIViewController {
             UIView.animate(
                 withDuration: 0.3
                 , animations: {
-                    self.view.transform = CGAffineTransform(translationX: 0, y: -(self.loginButton.frame.origin.y / 2))
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height / 2)
+//                    self.view.transform = CGAffineTransform(translationX: 0, y: -(self.loginButton.frame.origin.y / 2))
                 }
             )
         }
